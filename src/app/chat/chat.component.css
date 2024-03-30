@@ -1,0 +1,8 @@
+nb-accordion-item-body ul {
+    padding-left: 20px;
+  }
+
+nb-accordion-item-body li {
+  list-style-type: disc;
+  margin-bottom: 5px;
+}

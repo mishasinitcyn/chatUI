@@ -32,10 +32,14 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/chapters"
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "node_modules/@nebular/theme/styles/prebuilt/default.css",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "scripts": []
           },
@@ -94,6 +98,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []

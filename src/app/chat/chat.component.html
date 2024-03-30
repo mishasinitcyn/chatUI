@@ -1,0 +1,60 @@
+<nb-layout>
+    <nb-layout-header fixed>
+      <div class="header-content">
+        <span nz-icon nzType="smile" nzTheme="outline"></span>
+        <nb-icon icon="star"></nb-icon>
+        <h1 nz-typography style="font-size: 24px; font-weight: bold; margin-left: 12px; display: inline;">ML Tutor Chat</h1>
+      </div>
+      
+    </nb-layout-header>
+
+    <nb-sidebar>
+        <!--<nb-accordion>
+            <nb-accordion-item>
+              <nb-accordion-item-header>
+                Chapters
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                <nb-accordion multi>
+                    <nb-accordion-item *ngFor="let chapter of chapters; let i = index">
+                      <nb-accordion-item-header>
+                        Chapter {{ i + 1 }}
+                      </nb-accordion-item-header>
+                      <nb-accordion-item-body>
+                        <ul>
+                          <li *ngFor="let link of chapter.links">
+                            <button nz-button nzType="link" (click)="openPdfDialog('assets/resume.pdf')">CS229 Chapter 3</button>
+                          </li>
+
+                        </ul>
+                      </nb-accordion-item-body>
+                    </nb-accordion-item>
+                  </nb-accordion>
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+        </nb-accordion> -->
+
+
+        <nb-menu [items]="menuItems" tag="my-context-menu" style="margin: auto;"></nb-menu>
+        
+        <nb-sidebar-footer>  
+        </nb-sidebar-footer>
+
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <nb-chat title="Conversational UI">
+            <nb-chat-message *ngFor="let msg of messages"
+                             [message]="msg.text"
+                             [reply]="msg.reply"
+                             [sender]="msg.user.name"
+                             [date]="msg.date"
+                             [avatar]="msg.user.avatar">
+            </nb-chat-message>
+            
+        
+            <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true">
+            </nb-chat-form>
+        </nb-chat>
+    </nb-layout-column>
+</nb-layout>
