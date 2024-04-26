@@ -3,7 +3,7 @@
       <div class="header-content">
         <span nz-icon nzType="smile" nzTheme="outline"></span>
         <nb-icon icon="star"></nb-icon>
-        <h1 nz-typography style="font-size: 24px; font-weight: bold; margin-left: 12px; display: inline;">ML Tutor Chat</h1>
+        <h1 nz-typography style="font-size: 24px; font-weight: bold; margin-left: 12px; display: inline;">MLChat</h1>
       </div>
       
     </nb-layout-header>
@@ -18,7 +18,8 @@
 
     </nb-sidebar>
 
-    <nb-layout-column>
+    <nb-layout-column >
+      <div style="height: 85vh; overflow: auto;">
         <nb-chat title="Conversational UI">
             <nb-chat-message *ngFor="let msg of messages"
                              [message]="msg.text"
@@ -32,5 +33,6 @@
             <nb-chat-form (send)="sendMessage($event)" >
             </nb-chat-form>
         </nb-chat>
+      </div>
     </nb-layout-column>
 </nb-layout>
