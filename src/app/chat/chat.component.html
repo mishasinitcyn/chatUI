@@ -9,30 +9,6 @@
     </nb-layout-header>
 
     <nb-sidebar>
-        <!--<nb-accordion>
-            <nb-accordion-item>
-              <nb-accordion-item-header>
-                Chapters
-              </nb-accordion-item-header>
-              <nb-accordion-item-body>
-                <nb-accordion multi>
-                    <nb-accordion-item *ngFor="let chapter of chapters; let i = index">
-                      <nb-accordion-item-header>
-                        Chapter {{ i + 1 }}
-                      </nb-accordion-item-header>
-                      <nb-accordion-item-body>
-                        <ul>
-                          <li *ngFor="let link of chapter.links">
-                            <button nz-button nzType="link" (click)="openPdfDialog('assets/resume.pdf')">CS229 Chapter 3</button>
-                          </li>
-
-                        </ul>
-                      </nb-accordion-item-body>
-                    </nb-accordion-item>
-                  </nb-accordion>
-              </nb-accordion-item-body>
-            </nb-accordion-item>
-        </nb-accordion> -->
 
 
         <nb-menu [items]="menuItems" tag="my-context-menu" style="margin: auto;"></nb-menu>
@@ -53,7 +29,7 @@
             </nb-chat-message>
             
         
-            <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true">
+            <nb-chat-form (send)="sendMessage($event)" >
             </nb-chat-form>
         </nb-chat>
     </nb-layout-column>

@@ -9,7 +9,6 @@ import { NbThemeModule, NbLayoutModule, NbChatModule, NbMenuModule, NbAccordionM
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { PdfDialogComponent } from './pdf-dialog/pdf-dialog.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -20,7 +19,6 @@ import { SimplebarAngularModule } from 'simplebar-angular';
   declarations: [
     AppComponent,
     ChatComponent,
-    PdfDialogComponent
   ],
   imports: [
     BrowserModule,

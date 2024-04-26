@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {TemplateRef } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
-import { PdfDialogComponent } from '../pdf-dialog/pdf-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
 import { ChatService } from '../chat.service';
+import { User, Message, default_message } from '../interface';
 
 @Component({
   selector: 'app-chat',
@@ -15,14 +15,11 @@ import { ChatService } from '../chat.service';
 })
 export class ChatComponent implements OnInit {
   constructor(public dialog: MatDialog, private menuService: NbMenuService, private notification: NzNotificationService, private chatService: ChatService) {
-    this.jsonInput = [{ role: 'system', content: 'Hello! Feel free to ask me questions about the course material and I will try my best to answer them with citations from the textbooks.'}];
+    this.messages = [default_message]
   }
 
-  //create a jsonInput empty object
-  jsonInput: any[] = [];
   messages: any[] = [];
   menuItems: NbMenuItem[] = [
-/*
     {
       title: 'Chapters',
       expanded: false,
@@ -68,7 +65,6 @@ export class ChatComponent implements OnInit {
       icon: 'email-outline',
       link: '/messages',
     },
-    */
   ];
 
   /*
@@ -81,15 +77,6 @@ export class ChatComponent implements OnInit {
   }));
   */
 
-  
-  openPdfDialog(pdfUrl: string) {
-    this.dialog.open(PdfDialogComponent, {
-      data: { pdfUrl: pdfUrl },
-      width: '80%',
-      height: '90%',
-    });
-  }
-
   ngOnInit() {
     this.menuService.onItemClick()
       .pipe(
@@ -98,19 +85,9 @@ export class ChatComponent implements OnInit {
       )
       .subscribe(data => {
         if (data.action === 'openPdf') {
-          this.openPdfDialog(data.pdfUrl);
         }
       });
 
-    this.messages = this.jsonInput.map(msg => ({
-      text: msg.content,
-      date: new Date(),
-      reply: msg.role === 'user',
-      user: {
-        name: msg.role === 'user' ? 'User' : 'System',
-        avatar: msg.role === 'user' ? 'url-to-user-avatar' : 'url-to-system-avatar',
-      },
-    }));
   }
 
   sendMessage(event: any) {
@@ -124,11 +101,7 @@ export class ChatComponent implements OnInit {
       },
     });
   
-    this.jsonInput.push({
-      role: "user",
-      content: event.message
-    });
-  
+
     this.chatService.sendQuery(event.message).subscribe({
       next: (apiResponse) => {
         this.messages.push({
@@ -140,11 +113,7 @@ export class ChatComponent implements OnInit {
             avatar: 'url-to-system-avatar',
           },
         });
-  
-        this.jsonInput.push({
-          role: "system",
-          content: apiResponse
-        });
+
       },
       error: (error: any) => {
         console.error('API Error:', error);
@@ -158,10 +127,7 @@ export class ChatComponent implements OnInit {
           },
         });
   
-        this.jsonInput.push({
-          role: "system",
-          content: 'Failed to get response from the server.'
-        });
+
       }
     });
   }
