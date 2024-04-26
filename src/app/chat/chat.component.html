@@ -1,4 +1,4 @@
-<nb-layout>
+<!-- <nb-layout>
     <nb-layout-header fixed>
       <div class="header-content">
         <span nz-icon nzType="smile" nzTheme="outline"></span>
@@ -18,21 +18,23 @@
 
     </nb-sidebar>
 
-    <nb-layout-column >
-      <div style="height: 85vh; overflow: auto;">
-        <nb-chat title="Conversational UI">
-            <nb-chat-message *ngFor="let msg of messages"
-                             [message]="msg.text"
-                             [reply]="msg.reply"
-                             [sender]="msg.user.name"
-                             [date]="msg.date"
-                             [avatar]="msg.user.avatar">
-            </nb-chat-message>
-            
+    
+</nb-layout> -->
+<nb-layout>
+<nb-layout-column>
+  <div>
+    <nb-chat title="MLChat"  style="height: 95vh; overflow: auto;">
+        <nb-chat-message *ngFor="let msg of messages"
+                         [message]="msg.text"
+                         [reply]="msg.reply"
+                         [sender]="msg.user.name"
+                         [date]="msg.date"
+                         [avatar]="msg.user.avatar">
+        </nb-chat-message>
         
-            <nb-chat-form (send)="sendMessage($event)" >
-            </nb-chat-form>
-        </nb-chat>
-      </div>
-    </nb-layout-column>
-</nb-layout>
+    
+        <nb-chat-form (send)="sendMessage($event)" >
+        </nb-chat-form>
+    </nb-chat>
+  </div>
+</nb-layout-column></nb-layout>

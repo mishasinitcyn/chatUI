@@ -9,16 +9,22 @@ import { NbThemeModule, NbLayoutModule, NbChatModule, NbMenuModule, NbAccordionM
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SimplebarAngularModule } from 'simplebar-angular';
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
+    PdfViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +48,10 @@ import { SimplebarAngularModule } from 'simplebar-angular';
     NzTypographyModule,
     NzIconModule,
     NzTagModule,
+    NzMenuModule,
+    NzDividerModule,
+    NzBreadCrumbModule,
+    NzLayoutModule,
     SimplebarAngularModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

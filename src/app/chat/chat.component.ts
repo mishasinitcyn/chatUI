@@ -132,9 +132,24 @@ export class ChatComponent implements OnInit {
     });
   }
 
-
   createBasicNotification(template: TemplateRef<{}>): void {
     this.notification.template(template);
   }
 
+  pdfSrc: string | Uint8Array | undefined;
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file.type !== 'application/pdf') {
+      console.error('Please upload a PDF file.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.pdfSrc = e.target.result;
+    };
+
+    reader.readAsArrayBuffer(file);
+  }
 }

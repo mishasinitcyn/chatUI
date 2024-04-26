@@ -1,1 +1,35 @@
-<app-chat></app-chat>
+<nz-layout class="layout" nzTheme="light" style="max-height:100vh;"> 
+    <nz-sider nzCollapsible nzBreakpoint="sm" [nzCollapsedWidth]="0">
+<!--         
+        <div class="ant-typography" style="margin-top: 20px; font-size: 24px; text-align: center;">
+            <h1>MLChat</h1>
+          </div>
+          -->
+          <nz-divider style="margin-top: 10vh"></nz-divider> 
+
+      <ul nz-menu nzTheme="light" nzMode="inline">
+        <li nz-menu-item>
+          <span nz-icon nzType="user"></span>
+          <span>nav 1</span>
+        </li>
+        <li nz-menu-item>
+          <span nz-icon nzType="video-camera"></span>
+          <span>nav 2</span>
+        </li>
+        <li nz-menu-item>
+          <span nz-icon nzType="upload"></span>
+          <span>nav 3</span>
+        </li>
+        <li nz-menu-item>
+          <span nz-icon nzType="user"></span>
+          <span>nav 4</span>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <nz-content>
+        <app-chat></app-chat>
+      </nz-content>
+      <nz-footer></nz-footer>
+    </nz-layout>
+  </nz-layout>
