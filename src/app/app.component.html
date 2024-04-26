@@ -1,34 +1,43 @@
-<nz-layout class="layout" nzTheme="light" style="max-height:100vh;"> 
-    <nz-sider nzCollapsible nzBreakpoint="sm" [nzCollapsedWidth]="0">
-<!--         
-        <div class="ant-typography" style="margin-top: 20px; font-size: 24px; text-align: center;">
-            <h1>MLChat</h1>
-          </div>
-          -->
-          <nz-divider style="margin-top: 10vh"></nz-divider> 
+<nz-layout class="layout" nzTheme="light" style="max-height:100vh; overflow:hidden">
+  <!--   
+  <nz-header>
+    <ul nz-menu nzTheme="light" nzMode="horizontal" class="header-menu">
+      <li nz-menu-item [nzSelected]="tab === 1" (click)="tab = 1" nzTitle="<b>Chat</b>">
+        <b>Chat</b>
+      </li>
+      <li nz-menu-item [nzSelected]="tab === 2" (click)="tab = 2" nzTitle="<b>PDF Viewer</b>">
+        <b>PDF Viewer</b>
+      </li>
+    </ul>
+  </nz-header> 
+  -->
 
+  <nz-sider nzCollapsible [nzTrigger]="" nzBreakpoint="lg" [nzCollapsedWidth]="0">
+      <nz-divider style="margin-top: 10vh"></nz-divider> 
       <ul nz-menu nzTheme="light" nzMode="inline">
         <li nz-menu-item>
-          <span nz-icon nzType="user"></span>
           <span>nav 1</span>
         </li>
         <li nz-menu-item>
-          <span nz-icon nzType="video-camera"></span>
           <span>nav 2</span>
         </li>
         <li nz-menu-item>
-          <span nz-icon nzType="upload"></span>
           <span>nav 3</span>
         </li>
         <li nz-menu-item>
-          <span nz-icon nzType="user"></span>
           <span>nav 4</span>
         </li>
       </ul>
     </nz-sider>
+
     <nz-layout>
       <nz-content>
-        <app-chat></app-chat>
+        <div style="width: 100%; height: 100%;" [ngSwitch]="tab">
+          <app-chat *ngSwitchCase="1"></app-chat>
+          <div  *ngSwitchCase="2" style="width: 100%; height: 90vh;">
+            <pdf-viewer [src]="'assets/5.pdf'"  [render-text]="true" style="display: block; width: 100%; height: 100%;"></pdf-viewer>
+          </div>
+        </div>
       </nz-content>
       <nz-footer></nz-footer>
     </nz-layout>

@@ -23,18 +23,18 @@
 <nb-layout>
 <nb-layout-column>
   <div>
-    <nb-chat title="MLChat"  style="height: 95vh; overflow: auto;">
-        <nb-chat-message *ngFor="let msg of messages"
-                         [message]="msg.text"
-                         [reply]="msg.reply"
-                         [sender]="msg.user.name"
-                         [date]="msg.date"
-                         [avatar]="msg.user.avatar">
-        </nb-chat-message>
-        
+    <nb-chat title="MLChat" style="height: 90vh; width: 100%; overflow: auto;">
+      <nb-chat-message *ngFor="let msg of messages"
+                       [message]="msg.text"
+                       [reply]="msg.reply"
+                       [sender]="msg.user.name"
+                       [date]="msg.date"
+                       [avatar]="msg.user.avatar">
+        <div [innerHTML]="msg.text"></div>
+      </nb-chat-message>
     
-        <nb-chat-form (send)="sendMessage($event)" >
-        </nb-chat-form>
+      <nb-chat-form (send)="sendMessage($event)">
+      </nb-chat-form>
     </nb-chat>
   </div>
 </nb-layout-column></nb-layout>

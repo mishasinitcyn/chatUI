@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'chat';
+  constructor(private modalService: NzModalService) {}
+  tab = 1;
+  title = 'MLChat';
+
 }

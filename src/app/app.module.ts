@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
-import { NbThemeModule, NbLayoutModule, NbChatModule, NbMenuModule, NbAccordionModule, NbButtonModule  } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbChatModule, NbMenuModule, NbAccordionModule, NbButtonModule, NbWindowModule  } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -15,16 +15,16 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SimplebarAngularModule } from 'simplebar-angular';
-import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
-    PdfViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +36,7 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
     NbChatModule,
     NbChatModule.forRoot({ messageGoogleMapKey: 'MAP_KEY' }),
     NbThemeModule.forRoot({ name: 'default' }),
+    NbWindowModule.forRoot(),
     NbLayoutModule,
     NbChatModule,
     NbEvaIconsModule,
@@ -50,12 +51,13 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
     NzTagModule,
     NzMenuModule,
     NzDividerModule,
+    NzModalModule,
     NzBreadCrumbModule,
     NzLayoutModule,
     SimplebarAngularModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

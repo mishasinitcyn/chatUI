@@ -7,6 +7,7 @@ import { NbMenuItem, NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
 import { ChatService } from '../chat.service';
 import { User, Message, default_message } from '../interface';
+import { ChatStateService } from '../chat-state.service';
 
 @Component({
   selector: 'app-chat',
@@ -14,80 +15,20 @@ import { User, Message, default_message } from '../interface';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  constructor(public dialog: MatDialog, private menuService: NbMenuService, private notification: NzNotificationService, private chatService: ChatService) {
-    this.messages = [default_message]
+  constructor(public chatStateService: ChatStateService, public dialog: MatDialog, private menuService: NbMenuService, private notification: NzNotificationService, private chatService: ChatService) {
   }
-
-  messages: any[] = [];
-  menuItems: NbMenuItem[] = [
-    {
-      title: 'Chapters',
-      expanded: false,
-      children: [
-        {
-          title: 'SVD and Eigendecomposition',
-          expanded: false,
-          children: [
-            { title: 'Math for ML Chapter 4', data: { action: 'openPdf', pdfUrl: 'assets/resume.pdf' } },
-          ]
-        },
-        {
-          title: 'Norms and Taylor Expansion',
-          expanded: false,
-          children: [
-            { title: 'Math for ML Chapter 3.1', data: { action: 'openPdf', pdfUrl: 'assets/resume.pdf' } },
-            { title: 'Math for ML Chapter 5.1', data: { action: 'openPdf', pdfUrl: 'assets/dl/5.pdf' } },
-          ]
-        },
-        {
-          title: 'Convexity',
-          expanded: false,
-          children: [
-            { title: 'Math for ML Chapter 3.2', data: { action: 'openPdf', pdfUrl: 'assets/resume.pdf' } },
-            { title: 'CS229 Chapter 11.2', data: { action: 'openPdf', pdfUrl: 'assets/dl/5.pdf' } },
-          ]
-        },
-      ],
-      icon: 'book',
-    },
-    {
-      title: 'Repo',
-      icon: 'github',
-      link: '/dashboard',
-    },
-    {
-      title: 'FAQ',
-      icon: 'question-mark-circle-outline',
-      link: '/profile',
-    },
-    {
-      title: 'Contact Me',
-      icon: 'email-outline',
-      link: '/messages',
-    },
-  ];
-
-  /*
-  chapters = Array.from({ length: 17 }, (_, chapterIndex) => ({
-    title: `Chapter ${chapterIndex + 1}`,
-    links: Array.from({ length: 5 }, (_, linkIndex) => ({
-      label: `Link ${linkIndex + 1} of Chapter ${chapterIndex + 1}`,
-      url: `#`,
-    })),
-  }));
-  */
+ 
+  messages: any[] = [default_message];
 
   ngOnInit() {
-    this.menuService.onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === 'my-context-menu'),
-        map(({ item: { data } }) => data)
-      )
-      .subscribe(data => {
-        if (data.action === 'openPdf') {
-        }
-      });
+    const storedState = this.chatStateService.getChatState();
+    if (storedState) {
+      this.messages = storedState;
+    }
+  }
 
+  ngOnDestroy() {
+    this.chatStateService.storeChatState(this.messages);
   }
 
   sendMessage(event: any) {
@@ -101,7 +42,6 @@ export class ChatComponent implements OnInit {
       },
     });
   
-
     this.chatService.sendQuery(event.message).subscribe({
       next: (apiResponse) => {
         this.messages.push({
@@ -130,26 +70,5 @@ export class ChatComponent implements OnInit {
 
       }
     });
-  }
-
-  createBasicNotification(template: TemplateRef<{}>): void {
-    this.notification.template(template);
-  }
-
-  pdfSrc: string | Uint8Array | undefined;
-
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file.type !== 'application/pdf') {
-      console.error('Please upload a PDF file.');
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.pdfSrc = e.target.result;
-    };
-
-    reader.readAsArrayBuffer(file);
   }
 }

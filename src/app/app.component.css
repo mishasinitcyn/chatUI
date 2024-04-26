@@ -1,5 +1,47 @@
-/* Explicit light theme for sider and header */
 .ant-layout-sider, .ant-layout-header {
-    background-color: #fff; /* Light background */
-    color: rgba(0, 0, 0, 0.85); /* Dark text suitable for light backgrounds */
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.85);
 }
+
+/* .layout {
+    min-height: 100vh;
+  }
+
+  .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 24px 16px 0;
+    float: left;
+  }
+
+  nz-header {
+    position: absolute;
+    width: 100%;
+  }
+
+  [nz-menu] {
+    line-height: 64px;
+  }
+
+  nz-content {
+    margin: auto;
+    margin-top: 64px;
+    width: 100%;
+  }
+
+  nz-breadcrumb {
+    margin: 16px 0; 
+  }
+
+  .inner-content {
+    background: #fff;
+    padding: 24px;
+    min-height: 380px;
+  }
+  
+  nz-footer {
+    text-align: center;
+  } */
+
+  
