@@ -6,6 +6,7 @@ import { PdfDialogComponent } from '../pdf-dialog/pdf-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
+import { ChatService } from '../chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -13,8 +14,15 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  constructor(public dialog: MatDialog, private menuService: NbMenuService, private notification: NzNotificationService, private chatService: ChatService) {
+    this.jsonInput = [{ role: 'system', content: 'Hello! Feel free to ask me questions about the course material and I will try my best to answer them with citations from the textbooks.'}];
+  }
+
+  //create a jsonInput empty object
+  jsonInput: any[] = [];
   messages: any[] = [];
   menuItems: NbMenuItem[] = [
+/*
     {
       title: 'Chapters',
       expanded: false,
@@ -60,9 +68,10 @@ export class ChatComponent implements OnInit {
       icon: 'email-outline',
       link: '/messages',
     },
-    
+    */
   ];
 
+  /*
   chapters = Array.from({ length: 17 }, (_, chapterIndex) => ({
     title: `Chapter ${chapterIndex + 1}`,
     links: Array.from({ length: 5 }, (_, linkIndex) => ({
@@ -70,7 +79,7 @@ export class ChatComponent implements OnInit {
       url: `#`,
     })),
   }));
-  constructor(public dialog: MatDialog, private menuService: NbMenuService, private notification: NzNotificationService) {}
+  */
 
   
   openPdfDialog(pdfUrl: string) {
@@ -93,18 +102,7 @@ export class ChatComponent implements OnInit {
         }
       });
 
-    const jsonInput = [
-      // {
-      //   "role": "system",
-      //   "content": "You are a friendly chatbot who always responds in the style of a machine learning professor",
-      // },
-      // {"role": "user", "content": "Explain Ordinary Linear Regression very briefly, on a high level."}
-      {"role": "user", "content": "Please explain the kernel trick."},
-      {"role": "system", "content": "Per CS229 Lecture 13, the kernel trick is a method to map data into a higher-dimensional space, where it is easier to classify. This is done by using a kernel function to compute the dot product of the data points in the higher-dimensional space, without actually computing the transformation. The kernel function is a similarity function that measures how similar two data points are. The kernel trick is used in Support Vector Machines (SVMs) to classify data that is not linearly separable in the original space. The kernel trick allows SVMs to find a hyperplane that separates the data in the higher-dimensional space, which corresponds to a non-linear decision boundary in the original space."},
-
-    ];
-
-    this.messages = jsonInput.map(msg => ({
+    this.messages = this.jsonInput.map(msg => ({
       text: msg.content,
       date: new Date(),
       reply: msg.role === 'user',
@@ -115,7 +113,7 @@ export class ChatComponent implements OnInit {
     }));
   }
 
-  sendMessage(event:any){
+  sendMessage(event: any) {
     this.messages.push({
       text: event.message,
       date: new Date(),
@@ -124,6 +122,47 @@ export class ChatComponent implements OnInit {
         name: 'User',
         avatar: 'url-to-user-avatar',
       },
+    });
+  
+    this.jsonInput.push({
+      role: "user",
+      content: event.message
+    });
+  
+    this.chatService.sendQuery(event.message).subscribe({
+      next: (apiResponse) => {
+        this.messages.push({
+          text: apiResponse,
+          date: new Date(),
+          reply: false,
+          user: {
+            name: 'System',
+            avatar: 'url-to-system-avatar',
+          },
+        });
+  
+        this.jsonInput.push({
+          role: "system",
+          content: apiResponse
+        });
+      },
+      error: (error: any) => {
+        console.error('API Error:', error);
+        this.messages.push({
+          text: 'Failed to get response from the server.',
+          date: new Date(),
+          reply: false,
+          user: {
+            name: 'System',
+            avatar: 'url-to-system-avatar',
+          },
+        });
+  
+        this.jsonInput.push({
+          role: "system",
+          content: 'Failed to get response from the server.'
+        });
+      }
     });
   }
 

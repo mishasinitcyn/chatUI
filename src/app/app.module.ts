@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { NbThemeModule, NbLayoutModule, NbChatModule, NbMenuModule, NbAccordionModule, NbButtonModule  } from '@nebular/theme';
@@ -24,6 +25,7 @@ import { SimplebarAngularModule } from 'simplebar-angular';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,

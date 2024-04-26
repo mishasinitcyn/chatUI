@@ -4,3 +4,11 @@
     z-index: 10;
   }
   
+
+  pdf-viewer {
+    height: calc(100vh - 56px);
+    margin: auto;
+    display: block;
+    width: auto;
+    overflow: hidden;
+}
