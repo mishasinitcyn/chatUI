@@ -1,40 +1,19 @@
-<!-- <nb-layout>
-    <nb-layout-header fixed>
-      <div class="header-content">
-        <span nz-icon nzType="smile" nzTheme="outline"></span>
-        <nb-icon icon="star"></nb-icon>
-        <h1 nz-typography style="font-size: 24px; font-weight: bold; margin-left: 12px; display: inline;">MLChat</h1>
-      </div>
-      
-    </nb-layout-header>
-
-    <nb-sidebar>
-
-
-        <nb-menu [items]="menuItems" tag="my-context-menu" style="margin: auto;"></nb-menu>
-        
-        <nb-sidebar-footer>  
-        </nb-sidebar-footer>
-
-    </nb-sidebar>
-
-    
-</nb-layout> -->
 <nb-layout>
-<nb-layout-column>
-  <div>
-    <nb-chat title="MLChat" style="height: 90vh; width: 100%; overflow: auto;">
-      <nb-chat-message *ngFor="let msg of messages"
-                       [message]="msg.text"
-                       [reply]="msg.reply"
-                       [sender]="msg.user.name"
-                       [date]="msg.date"
-                       [avatar]="msg.user.avatar">
-        <div [innerHTML]="msg.text"></div>
-      </nb-chat-message>
-    
-      <nb-chat-form (send)="sendMessage($event)">
-      </nb-chat-form>
-    </nb-chat>
-  </div>
-</nb-layout-column></nb-layout>
+  <nb-layout-column>
+    <div>
+      <nb-chat title="MLChat" style="height: 90vh; width: 100%; overflow: auto;">
+        <nb-chat-message *ngFor="let msg of messages"
+                        [message]="msg.text"
+                        [reply]="msg.reply"
+                        [sender]="msg.user.name"
+                        [date]="msg.date"
+                        >
+          <div [innerHTML]="msg.text"></div>
+        </nb-chat-message>
+      
+        <nb-chat-form (send)="sendMessage($event)">
+        </nb-chat-form>
+      </nb-chat>
+    </div>
+  </nb-layout-column>
+</nb-layout>

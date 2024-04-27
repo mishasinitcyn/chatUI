@@ -1,10 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {TemplateRef } from '@angular/core';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-
-import { MatDialog } from '@angular/material/dialog';
-import { NbMenuItem, NbMenuService } from '@nebular/theme';
-import { filter, map } from 'rxjs/operators';
 import { ChatService } from '../chat.service';
 import { User, Message, default_message } from '../interface';
 import { ChatStateService } from '../chat-state.service';
@@ -15,7 +9,7 @@ import { ChatStateService } from '../chat-state.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  constructor(public chatStateService: ChatStateService, public dialog: MatDialog, private menuService: NbMenuService, private notification: NzNotificationService, private chatService: ChatService) {
+  constructor(public chatStateService: ChatStateService, private chatService: ChatService) {
   }
  
   messages: any[] = [default_message];
@@ -38,7 +32,7 @@ export class ChatComponent implements OnInit {
       reply: true,
       user: {
         name: 'User',
-        avatar: 'url-to-user-avatar',
+        // avatar: 'url-to-user-avatar',
       },
     });
   

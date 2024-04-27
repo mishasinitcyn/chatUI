@@ -13,13 +13,15 @@ export class AppComponent {
   title = 'MLChat';
   isMobile = window.innerWidth < 992;
 
-  openPdfModal() {
+  openPdfModal(pdfSrc: string) {
+    console.log(pdfSrc)
     this.modalService.create({
       nzContent: PdfModalComponent,
       nzFooter: null,
       nzWidth: this.isMobile? 'auto' : '70vw',
       nzData: {
-        isMobile: this.isMobile
+        isMobile: this.isMobile,
+        pdfSrc: pdfSrc
       }
     });
   }

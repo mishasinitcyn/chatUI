@@ -16,6 +16,6 @@ export const default_message  = {
     "reply": false,
     "user": {
         "name": "System",
-        "avatar": "url-to-system-avatar"
+        // "avatar": "url-to-system-avatar"
     }
 }
