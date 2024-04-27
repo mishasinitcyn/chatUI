@@ -12,22 +12,14 @@
   </nz-header> 
   -->
 
-  <nz-sider nzCollapsible [nzTrigger]="" nzBreakpoint="lg" [nzCollapsedWidth]="0">
+  <nz-sider [nzWidth]="240" nzCollapsible [nzTrigger]="" nzBreakpoint="md" [nzCollapsedWidth]="0">
+    <!-- <button nz-button nzType="default" nzSize="small" (click)="openPdfModal()">Open PDF</button> -->
       <nz-divider style="margin-top: 10vh"></nz-divider> 
-      <ul nz-menu nzTheme="light" nzMode="inline">
-        <li nz-menu-item>
-          <span>nav 1</span>
-        </li>
-        <li nz-menu-item>
-          <span>nav 2</span>
-        </li>
-        <li nz-menu-item>
-          <span>nav 3</span>
-        </li>
-        <li nz-menu-item>
-          <span>nav 4</span>
-        </li>
+
+       <ul nz-menu [nzMode]="'inline'" style="padding: none; margin: none;">
+        <app-menu></app-menu>
       </ul>
+
     </nz-sider>
 
     <nz-layout>

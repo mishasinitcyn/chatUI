@@ -1,0 +1,10 @@
+.pdf-modal-container {
+    height: 90vh;
+    width: 80vw;
+    overflow: auto;
+  }
+  
+  @media only screen and (max-width: 768px) {
+   .pdf-modal-container {
+    }
+  }

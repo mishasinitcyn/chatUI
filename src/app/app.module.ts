@@ -19,12 +19,16 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { PdfModalComponent } from './pdf-modal/pdf-modal.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
+    PdfModalComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
