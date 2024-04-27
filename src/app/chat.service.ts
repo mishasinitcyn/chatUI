@@ -12,9 +12,9 @@ export class ChatService {
 
   constructor(private http: HttpClient) { }
 
-  sendQuery(query: string): Observable<string> {
+  sendQuery(query: string, history: string[]): Observable<string> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const body = { query: query };
+    const body = { query: query, history: history };
     console.log('Sending query: ', body);
 
     return this.http.post<{response: string}>(this.apiUrl, body, { headers }).pipe(

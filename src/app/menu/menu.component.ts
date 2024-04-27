@@ -21,7 +21,7 @@ export class MenuComponent {
       },
       {
         title: "Deep Learning",
-        chapters: ["5", "6", "7", "8", "9", "14"]
+        chapters: ["5", "6", "8", "9", "14"]
       },
       {
         title: "Stanford CS229",

@@ -13,11 +13,15 @@ export class ChatComponent implements OnInit {
   }
  
   messages: any[] = [default_message];
+  history: string[] = [`Assistant: ${default_message.text}`];
 
   ngOnInit() {
     const storedState = this.chatStateService.getChatState();
     if (storedState) {
       this.messages = storedState;
+      this.history = storedState.map((message: any) => {
+        return message.user.name + ": " + message.text;
+      });
     }
   }
 
@@ -35,18 +39,20 @@ export class ChatComponent implements OnInit {
         // avatar: 'url-to-user-avatar',
       },
     });
-  
-    this.chatService.sendQuery(event.message).subscribe({
+    this.history.push("User: " + event.message);
+
+    this.chatService.sendQuery(event.message, this.history).subscribe({
       next: (apiResponse) => {
         this.messages.push({
           text: apiResponse,
           date: new Date(),
           reply: false,
           user: {
-            name: 'System',
+            name: 'Assistant',
             avatar: 'url-to-system-avatar',
           },
         });
+        this.history.push("Assistant: " + apiResponse);
 
       },
       error: (error: any) => {
@@ -56,11 +62,11 @@ export class ChatComponent implements OnInit {
           date: new Date(),
           reply: false,
           user: {
-            name: 'System',
+            name: 'Assistant',
             avatar: 'url-to-system-avatar',
           },
         });
-  
+        this.history.push("Assistant: Failed to get response from the server.");
 
       }
     });
