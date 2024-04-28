@@ -1,19 +1,21 @@
-<nb-layout>
-  <nb-layout-column>
-    <div>
-      <nb-chat title="MLChat" style="height: 90vh; width: 100%; overflow: auto;">
-        <nb-chat-message *ngFor="let msg of messages"
-                        [message]="msg.text"
-                        [reply]="msg.reply"
-                        [sender]="msg.user.name"
-                        [date]="msg.date"
-                        >
-          <div [innerHTML]="msg.text"></div>
-        </nb-chat-message>
-      
-        <nb-chat-form (send)="sendMessage($event)">
-        </nb-chat-form>
-      </nb-chat>
-    </div>
-  </nb-layout-column>
-</nb-layout>
+<div>
+  <nb-layout>
+    <nb-layout-column>
+      <div style="position: relative;">
+        <nb-chat title="MLChat" style="height: 90vh; width: 100%; overflow: auto;">
+          <nb-chat-message *ngFor="let msg of messages"
+                          [message]="msg.text"
+                          [reply]="msg.reply"
+                          [sender]="msg.user.name"
+                          [date]="msg.date"
+                          >
+            <div [innerHTML]="msg.text"></div>
+          </nb-chat-message>
+          <nb-chat-form (send)="sendMessage($event)">
+          </nb-chat-form>
+        </nb-chat>
+        <img src="assets/typing_status.gif" *ngIf="isLoading"  style="position: absolute; bottom: 10%; left: 0%; width: 100px; z-index: 1;"> <!-- Update image styles -->
+      </div>
+    </nb-layout-column>
+  </nb-layout>
+</div>

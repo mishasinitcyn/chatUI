@@ -9,7 +9,6 @@ import { PdfModalComponent } from './pdf-modal/pdf-modal.component';
 })
 export class AppComponent {
   constructor(private modalService: NzModalService) {}
-  tab = 1;
   title = 'MLChat';
   isMobile = window.innerWidth < 992;
 

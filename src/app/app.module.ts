@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,9 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { PdfModalComponent } from './pdf-modal/pdf-modal.component';
 import { MenuComponent } from './menu/menu.component';
+import { MarkdownModule  } from 'ngx-markdown';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+
 
 
 @NgModule({
@@ -28,14 +31,14 @@ import { MenuComponent } from './menu/menu.component';
     AppComponent,
     ChatComponent,
     PdfModalComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    NbThemeModule.forRoot({ name: 'default' }),
+    NbThemeModule.forRoot({ name: 'dark' }),
     NbLayoutModule,
     NbChatModule,
     NbChatModule.forRoot({ messageGoogleMapKey: 'MAP_KEY' }),
@@ -58,8 +61,11 @@ import { MenuComponent } from './menu/menu.component';
     NzModalModule,
     NzBreadCrumbModule,
     NzLayoutModule,
-    SimplebarAngularModule
+    NzSpinModule,
+    SimplebarAngularModule,
+    MarkdownModule.forRoot({sanitize: SecurityContext.HTML})
   ],
+  exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent],

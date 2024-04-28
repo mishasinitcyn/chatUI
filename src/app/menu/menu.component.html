@@ -1,4 +1,4 @@
-<li *ngFor="let item of menuItems" nz-submenu [nzTitle]="item.title" nzIcon="setting">
+<li *ngFor="let item of menuItems" nz-submenu [nzTitle]="item.title">
   <ul>
     <li *ngFor="let chapter of item.chapters" nz-menu-item>
       <a [style.textDecoration]="'none'" style="cursor: pointer; " (click)="openPdfModal(textbook_path + item.title + '/' + chapter + '.pdf')">{{ chapter }}</a>

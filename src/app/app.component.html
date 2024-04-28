@@ -1,22 +1,17 @@
 <nz-layout class="layout" nzTheme="light" style="max-height:100vh; overflow:hidden">
   <nz-sider [nzWidth]="280" nzCollapsible [nzTrigger]="" nzBreakpoint="md" [nzCollapsedWidth]="0">
-      <nz-divider style="margin-top: 10vh"></nz-divider> 
+    <nz-divider style="margin-top: 10vh"></nz-divider> 
+    <ul nz-menu [nzMode]="'inline'" style="padding: none; margin: none;">
+      <app-menu></app-menu>
+    </ul>
+  </nz-sider>
 
-       <ul nz-menu [nzMode]="'inline'" style="padding: none; margin: none;">
-        <app-menu></app-menu>
-      </ul>
-
-    </nz-sider>
-
-    <nz-layout>
-      <nz-content>
-        <div style="width: 100%; height: 100%;" [ngSwitch]="tab">
-          <app-chat *ngSwitchCase="1"></app-chat>
-          <div  *ngSwitchCase="2" style="width: 100%; height: 90vh;">
-            <pdf-viewer [src]="'assets/5.pdf'"  [render-text]="true" style="display: block; width: 100%; height: 100%;"></pdf-viewer>
-          </div>
-        </div>
-      </nz-content>
-      <nz-footer></nz-footer>
-    </nz-layout>
+  <nz-layout>
+    <nz-content>
+      <div style="width: 100%; height: 100%; position: relative;">
+        <app-chat></app-chat>
+      </div>
+    </nz-content>
+    <nz-footer></nz-footer>
   </nz-layout>
+</nz-layout>
