@@ -1,6 +1,20 @@
 <nz-layout class="layout" nzTheme="light" style="max-height:100vh; overflow:hidden">
   <nz-sider [nzWidth]="280" nzCollapsible [nzTrigger]="" nzBreakpoint="md" [nzCollapsedWidth]="0">
-    <nz-divider style="margin-top: 10vh"></nz-divider> 
+
+    <div style="display: flex; flex-direction: column; justify-content: center; height: 10vh; margin-bottom: 10px;">
+      <div style="display: flex; justify-content: space-between;">
+        <a href="https://github.com/mishasinitcyn/MLChat/tree/master" target="_blank" style="flex-grow: 1; text-align: center;" class="hyperlink-logo">
+          <i nz-icon nzType="github" style="font-size: 50px;"></i>
+        </a>
+        <a href="https://medium.com/@msa242" target="_blank" style="flex-grow: 1; text-align: center;" class="hyperlink-logo">
+          <i nz-icon nz-icon nzType="medium-square" nzTheme="fill" style="font-size: 50px;"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/mikhail-sinitcyn-8909b5224/" target="_blank" style="flex-grow: 1; text-align: center;" class="hyperlink-logo">
+          <i nz-icon nzType="linkedin" nzTheme="fill"  style="font-size: 50px;"></i>
+        </a>
+      </div>
+    </div>
+    <nz-divider style="margin-top: 0;"></nz-divider>
     <ul nz-menu [nzMode]="'inline'" style="padding: none; margin: none;">
       <app-menu></app-menu>
     </ul>

@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { NbThemeModule, NbLayoutModule, NbChatModule, NbMenuModule, NbAccordionModule, NbButtonModule, NbWindowModule  } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -23,7 +22,9 @@ import { PdfModalComponent } from './pdf-modal/pdf-modal.component';
 import { MenuComponent } from './menu/menu.component';
 import { MarkdownModule  } from 'ngx-markdown';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
+import { GithubOutline } from '@ant-design/icons-angular/icons';
+import { LinkedinOutline } from '@ant-design/icons-angular/icons';
+import { MediumCircleFill} from '@ant-design/icons-angular/icons';
 
 
 @NgModule({
@@ -46,7 +47,6 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NbWindowModule.forRoot(),
     NbLayoutModule,
     NbChatModule,
-    NbEvaIconsModule,
     NbMenuModule.forRoot(),
     MatDialogModule,
     PdfViewerModule,
@@ -54,7 +54,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NbButtonModule,
     NzButtonModule,
     NzTypographyModule,
-    NzIconModule,
+    NzIconModule.forChild([GithubOutline, LinkedinOutline, MediumCircleFill]),
     NzTagModule,
     NzMenuModule,
     NzDividerModule,

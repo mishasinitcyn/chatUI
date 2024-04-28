@@ -16,7 +16,7 @@ export interface ModalData {
         [src]="data.pdfSrc" 
         [render-text]="true" 
         [autoresize]="true" 
-        [fit-to-page]="data.isMobile" 
+        [fit-to-page]="true" 
         style="height: 70vh; margin: auto; max-height: 90vh;" 
         [zoom]="1">
       </pdf-viewer>
