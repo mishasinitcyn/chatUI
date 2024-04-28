@@ -15,7 +15,7 @@ export const default_message  = {
     "date": "2024-04-26T16:11:22.349Z",
     "reply": false,
     "user": {
-        "name": "System",
-        // "avatar": "url-to-system-avatar"
+        "name": "Assistant",
+        "avatar": "assets/icons/DALL·E 2023-08-12 21.52.31 - Photo of gnashing of teeth from the fantastic planet, 1973. .png"
     }
 }

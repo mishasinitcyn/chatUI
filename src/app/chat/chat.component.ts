@@ -9,6 +9,7 @@ import { User, Message, default_message } from '../interface';
 })
 export class ChatComponent {
   isLoading: boolean = false;
+  ASSISTANT_ICON = "assets/icons/Face.png"
 
   constructor(private chatService: ChatService) {
   }
@@ -22,9 +23,7 @@ export class ChatComponent {
       text: event.message,
       date: new Date(),
       reply: true,
-      user: {
-        name: 'User',
-      },
+      user: {name: 'User'},
     });
     this.history.push("User: " + event.message);
 
@@ -35,10 +34,7 @@ export class ChatComponent {
           text: apiResponse,
           date: new Date(),
           reply: false,
-          user: {
-            name: 'Assistant',
-            avatar: 'url-to-system-avatar',
-          },
+          user: {name: 'Assistant'},
         });
         this.history.push("Assistant: " + apiResponse);
       },
@@ -49,10 +45,7 @@ export class ChatComponent {
           text: 'Failed to get response from the server.',
           date: new Date(),
           reply: false,
-          user: {
-            name: 'Assistant',
-            avatar: 'url-to-system-avatar',
-          },
+          user: {name: 'Assistant'},
         });
         this.history.push("Assistant: Failed to get response from the server.");
       }
