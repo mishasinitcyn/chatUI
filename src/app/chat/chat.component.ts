@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ChatService } from '../chat.service';
-import { User, Message, default_message } from '../interface';
+import { DefaultMessage, TextbookPath, TextbookChapters, AssistantIcon, ReadingIcon, QueryLimit  } from '../interface';
+import { AppComponent } from '../app.component';
+import { NzNotificationPlacement, NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-chat',
@@ -9,15 +11,19 @@ import { User, Message, default_message } from '../interface';
 })
 export class ChatComponent {
   isLoading: boolean = false;
-  ASSISTANT_ICON = "assets/icons/Face.png"
+  messages: any[] = [DefaultMessage];
+  history: string[] = [`Assistant: ${DefaultMessage.text}`];
+  assistantIcon = AssistantIcon
+  queryCount = 0;
+  queryLimit = QueryLimit
 
-  constructor(private chatService: ChatService) {
-  }
- 
-  messages: any[] = [default_message];
-  history: string[] = [`Assistant: ${default_message.text}`];
+  constructor(private chatService: ChatService, private appComponent: AppComponent, private notification: NzNotificationService) {}
 
   sendMessage(event: any) {
+    if (this.queryCount >= this.queryLimit) {
+      this.sendNotification('top', 'Query Limit Reached', "Hi, thank you for using MLChat! I've set a limit of 5 queries per session to avoid overwhelming the API. Please refresh the page to start a new session.");
+      return;
+    }
     this.isLoading = true;
     this.messages.push({
       text: event.message,
@@ -26,6 +32,7 @@ export class ChatComponent {
       user: {name: 'User'},
     });
     this.history.push("User: " + event.message);
+    this.queryCount++;
 
     this.chatService.sendQuery(event.message, this.history).subscribe({
       next: (apiResponse) => {
@@ -37,6 +44,7 @@ export class ChatComponent {
           user: {name: 'Assistant'},
         });
         this.history.push("Assistant: " + apiResponse);
+        this.createChapterLink(apiResponse);
       },
       error: (error: any) => {
         this.isLoading = false;
@@ -51,4 +59,46 @@ export class ChatComponent {
       }
     });
   }
+
+  createChapterLink(message: string) {
+    TextbookChapters.forEach(tc => {
+      tc.chapters.forEach(chapter => {
+        if (message.includes(`${tc.title} Chapter ${chapter}`)) {
+          const pdfPath = `${TextbookPath}/${tc.title}/${chapter}.pdf`;
+          this.messages.push({
+            type: 'button',
+            customMessageData: {
+              text: `${tc.title} Chapter ${chapter}`,
+              href: pdfPath 
+            },
+            reply: false,
+            date: new Date(),
+            user: {
+              name: 'Source',
+              avatar: ReadingIcon
+            },
+          });
+        }
+      });
+    });
+  }
+  
+
+  openPdfModal(pdfPath: string) {
+    console.log('Opening PDF:', pdfPath);
+    this.appComponent.openPdfModal(pdfPath);
+  }
+
+  sendNotification(position: NzNotificationPlacement, title: string, message: string): void {
+    this.notification.blank(
+      title,
+      message,
+      { nzPlacement: position, 
+        nzStyle: {
+          width: '600px',
+        },
+      }
+    );
+  }
+
 }

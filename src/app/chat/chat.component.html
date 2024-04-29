@@ -3,20 +3,29 @@
     <nb-layout-column>
       <div style="position: relative;">
         <nb-chat title="MLChat" style="height: 90vh; width: 100%; overflow: auto;">
+          <div *nbCustomMessage="'button'; let data">
+            <button nz-button nzType="default" nzGhost (click)="openPdfModal(data.href)">{{ data.text }}</button>
+          </div>
+        
           <nb-chat-message *ngFor="let msg of messages"
-                          [message]="msg.text"
-                          [reply]="msg.reply"
-                          [sender]="msg.user.name"
-                          [date]="msg.date"
-                          [avatar]="ASSISTANT_ICON"
-                          >
+                           [type]="msg.type"
+                           [message]="msg.text"
+                           [reply]="msg.reply"
+                           [sender]="msg.user.name"
+                           [date]="msg.date"
+                           [avatar]="msg.user.avatar ?? assistantIcon"
+                           [customMessageData]="msg.customMessageData">
             <div [innerHTML]="msg.text"></div>
           </nb-chat-message>
-          <nb-chat-form (send)="sendMessage($event)">
+          <nb-chat-form (send)="sendMessage($event)" [showButton]="queryCount < queryLimit" [messagePlaceholder]="queryCount < queryLimit ? 'Ask a Machine Learning question' : ''">
           </nb-chat-form>
         </nb-chat>
+        
+        
         <img src="assets/typing_status.gif" *ngIf="isLoading"  style="position: absolute; bottom: 10%; left: 0%; width: 100px; z-index: 1;">
       </div>
     </nb-layout-column>
   </nb-layout>
+
+  
 </div>
