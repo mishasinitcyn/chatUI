@@ -5,8 +5,9 @@ import { Component } from '@angular/core';
   template: `
     <div style="margin: 0; height: 70vh; overflow: auto;">
     <h2 nz-typography style="color:#b7eb8f;">Prompting Guide</h2>
-    <p nz-typography>The system instructions and prompt format are pretty rigid in the sense that they are specifically designed to answer questions with citations from the knowledge base.
-      Each user message is directly used as a query to the vector database. Thus, I don't advise using traditionally conversational prompts with the system. In the future, I'd love to implement an agentic workflow that can independently make queries to the database.
+    <p nz-typography>The system instructions and prompt format are primarily designed to answer questions with citations from the knowledge base.
+      Each user message is directly used as a query to the vector database. Thus, I don't advise using traditionally conversational prompts with the system because it's better suited for direct question answering
+      than for general conversation. In the future, I'd love to implement an agentic workflow that can independently make queries to the database.
     </p>
 
     
@@ -22,7 +23,7 @@ import { Component } from '@angular/core';
         <li> Kernels </li>
       </ul>
 
-    Notice that the following material, which is typically covered in a Machine Learning course, is not included in the knowledge base:
+      <p nz-typography>Notice that the following material, which is typically covered in a Machine Learning course, is not included in the knowledge base:</p>
     <ul>
       <li> Decision Trees </li>
       <li> Random Forests </li>
@@ -41,7 +42,7 @@ import { Component } from '@angular/core';
 
     <h2 nz-typography style="color:#b7eb8f;">Licensing</h2>
     <p nz-typography>This project is entirely open-source and non-commercial. Thus, it is my understanding that I am legally allowed to host the textbook PDFs, 
-      given that they are publicly available online.<br> If you would like to send me a cease and desist, please send it to my email: msa242&#64;sfu.ca.</p>
+      given that they are publicly available online. If you would like to send me a cease and desist, please send it to my email: msa242&#64;sfu.ca.</p>
 
 
 
