@@ -26,10 +26,16 @@ export class AppComponent {
   }
 
   openFAQModal() {
-    this.modalService.info({
+    this.modalService.create({
       nzContent: FAQModalComponent,
       nzFooter: null,
       nzWidth: this.isMobile? 'auto' : '70vw',
+      nzClosable: false,
+      //add title
+      // nzTitle: 'FAQ',
+      nzBodyStyle: {
+        // background: ''
+      }
     });
   }
 
