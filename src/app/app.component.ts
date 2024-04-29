@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { PdfModalComponent } from './pdf-modal/pdf-modal.component';
+import { FAQModalComponent } from './utils/FAQ-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,6 @@ export class AppComponent {
   isMobile = window.innerWidth < 992;
 
   openPdfModal(pdfSrc: string) {
-    console.log(pdfSrc)
     this.modalService.create({
       nzContent: PdfModalComponent,
       nzFooter: null,
@@ -22,6 +22,14 @@ export class AppComponent {
         isMobile: this.isMobile,
         pdfSrc: pdfSrc
       }
+    });
+  }
+
+  openFAQModal() {
+    this.modalService.info({
+      nzContent: FAQModalComponent,
+      nzFooter: null,
+      nzWidth: this.isMobile? 'auto' : '70vw',
     });
   }
 

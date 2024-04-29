@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ChatService } from '../chat.service';
-import { DefaultMessage, TextbookPath, TextbookChapters, AssistantIcon, ReadingIcon, QueryLimit  } from '../interface';
+import { ChatService } from './chat.service';
+import { DefaultMessage, TextbookPath, TextbookChapters, AssistantIcon, ReadingIcon, QueryLimit, QueryLimitMessage  } from '../utils/interface';
 import { AppComponent } from '../app.component';
 import { NzNotificationPlacement, NzNotificationService } from 'ng-zorro-antd/notification';
 
@@ -21,7 +21,7 @@ export class ChatComponent {
 
   sendMessage(event: any) {
     if (this.queryCount >= this.queryLimit) {
-      this.sendNotification('top', 'Query Limit Reached', "Hi, thank you for using MLChat! I've set a limit of 5 queries per session to avoid overwhelming the API. Please refresh the page to start a new session.");
+       this.sendNotification('top', 'Query Limit Reached', QueryLimitMessage);
       return;
     }
     this.isLoading = true;
@@ -83,17 +83,20 @@ export class ChatComponent {
     });
   }
   
-
   openPdfModal(pdfPath: string) {
     console.log('Opening PDF:', pdfPath);
     this.appComponent.openPdfModal(pdfPath);
   }
 
   sendNotification(position: NzNotificationPlacement, title: string, message: string): void {
-    this.notification.blank(
+    this.notification.remove();
+  
+    this.notification.info(
       title,
       message,
-      { nzPlacement: position, 
+      {
+        nzPlacement: position,
+        nzCloseIcon: 'none',
         nzStyle: {
           width: '600px',
         },

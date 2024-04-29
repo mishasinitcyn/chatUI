@@ -18,6 +18,7 @@ import { MenuComponent } from './menu/menu.component';
 import { GithubOutline } from '@ant-design/icons-angular/icons';
 import { LinkedinOutline } from '@ant-design/icons-angular/icons';
 import { MediumCircleFill} from '@ant-design/icons-angular/icons';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { MediumCircleFill} from '@ant-design/icons-angular/icons';
     NzDividerModule,
     NzModalModule,
     NzLayoutModule,
+    NzTypographyModule
   ],
   exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

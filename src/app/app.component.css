@@ -6,3 +6,12 @@
 .hyperlink-logo{
     color:rgb(51, 102, 255)
 }
+
+.sider-header{
+    text-align: left !important;
+    margin:none; 
+    margin-left: 8%; 
+    color:#262626;
+}
+
+

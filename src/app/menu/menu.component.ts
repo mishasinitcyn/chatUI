@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { TextbookChapters, TextbookPath } from '../interface';
+import { TextbookChapters, TextbookPath } from '../utils/interface';
 
 @Component({
   selector: 'app-menu',
