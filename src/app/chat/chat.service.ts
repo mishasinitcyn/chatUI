@@ -8,18 +8,14 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class ChatService {
-
   private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
-
-  sendQuery(query: string, history: string[]): Observable<string> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const body = { query: query, history: history };
-    console.log('Sending query: ', body);
-
-    return this.http.post<{response: string}>(this.apiUrl, body, { headers }).pipe(
-      map(response => response.response)
-    );
-  }
+    sendQuery(query: string, history: string[]): Observable<string> {
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      const body = { query: query, history: history };
+      return this.http.post<{response: string}>(`${this.apiUrl}/query/`, body, { headers }).pipe(
+        map(response => response.response)
+      );
+    }
 }
