@@ -36,7 +36,7 @@
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
                 "output": "/assets/"
               },
-              "src/favicon.ico",
+              "src/customfavicon.ico",
               "src/assets",
               "src/chapters"
             ],
@@ -99,7 +99,7 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/favicon.ico",
+              "src/customfavicon.ico",
               "src/assets"
             ],
             "styles": [
