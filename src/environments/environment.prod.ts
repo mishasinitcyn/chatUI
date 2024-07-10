@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://fastapi-server-y4ofhpglzq-uc.a.run.app'
+    apiUrl: 'https://fastapi-server-y4ofhpglzq-wl.a.run.app'
   };
   
