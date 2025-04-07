@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ChatService } from './chat.service';
-import { DefaultMessage, TextbookPath, TextbookChapters, AssistantIcon, ReadingIcon, QueryLimit, QueryLimitMessage  } from '../utils/interface';
+import { DefaultMessages, TextbookPath, TextbookChapters, AssistantIcon, ReadingIcon, QueryLimit, QueryLimitMessage  } from '../utils/interface';
 import { AppComponent } from '../app.component';
 import { NzNotificationPlacement, NzNotificationService } from 'ng-zorro-antd/notification';
 
@@ -11,8 +11,8 @@ import { NzNotificationPlacement, NzNotificationService } from 'ng-zorro-antd/no
 })
 export class ChatComponent {
   isLoading: boolean = false;
-  messages: any[] = [DefaultMessage];
-  history: string[] = [`Assistant: ${DefaultMessage.text}`];
+  messages: any[] = [...DefaultMessages];
+  history: string[] = [`Assistant: ${DefaultMessages[0].text}`];
   assistantIcon = AssistantIcon
   queryCount = 0;
   queryLimit = QueryLimit
@@ -20,6 +20,7 @@ export class ChatComponent {
   constructor(private chatService: ChatService, private appComponent: AppComponent, private notification: NzNotificationService) {}
 
   sendMessage(event: any) {
+    return;
     if (this.queryCount >= this.queryLimit) {
        this.sendNotification('top', 'Query Limit Reached', QueryLimitMessage);
       return;

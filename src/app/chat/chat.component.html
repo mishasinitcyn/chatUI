@@ -17,7 +17,7 @@
                            [customMessageData]="msg.customMessageData">
             <div [innerHTML]="msg.text"></div>
           </nb-chat-message>
-          <nb-chat-form (send)="sendMessage($event)" [showButton]="queryCount < queryLimit" [messagePlaceholder]="queryCount < queryLimit ? 'Ask a Machine Learning question' : ''">
+          <nb-chat-form (send)="sendMessage($event)" [showButton]="false && queryCount < queryLimit" [messagePlaceholder]="queryCount < queryLimit ? 'Ask a Machine Learning question' : ''">
           </nb-chat-form>
         </nb-chat>
         

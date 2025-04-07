@@ -1,11 +1,21 @@
-export const DefaultMessage  = {
-    "text": "Hello! Feel free to ask me questions about Machine Learning and I will try my best to cite my answers with textbook chapters from my knowledge base.",
+export const DefaultMessages  = [{
+    // "text": "Hello! Feel free to ask me questions about Machine Learning and I will try my best to cite my answers with textbook chapters from my knowledge base.",
+    "text": "Hi. MLChat has been sunsetted because the embeddings API I was using has been discontinued.",
     "date": "2024-04-26T16:11:22.349Z",
     "reply": false,
     "user": {
         "name": "Assistant",
     }
-}
+  },
+  {
+    "text": "Thank you for using MLChat over the last year! You can still read the textbook chapters within the app.",
+    "date": "2024-04-26T16:11:22.349Z",
+    "reply": false,
+    "user": {
+        "name": "Assistant",
+    }
+  }
+]
 
 export const TextbookChapters = [
     {
